@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>Panel Genesis</title>
+  <link  rel="icon"   href="favicon.ico" type="" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- IonIcons -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to to the body tag
+to get the desired effect
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition sidebar-mini"ng-app="app" ng-controller="main">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-blue navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li>
+        <a href="" class="nav-link push-right"><i class="fas fa-bolt"></i></a>
+      </li>
+    </ul>
+
+    <!-- SEARCH FORM -->
+   <!--  <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form> -->
+
+    <!-- Right navbar links -->
+   
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-light-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index.html" class="brand-link">
+      <img src="dist/img/logo.png" alt="Genesis" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight">Sistemas Genesis</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar" style="max-height: 500px;
+          overflow-y: scroll;">
+     
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Empresas
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item" ng-repeat="i in datum" >
+                <a href="" ng-click="libs.getdata(i.nombre)" data-toggle="collapse-show" data-target="#table-collapse" class="nav-link">
+                  <i class="fas fa-bullseye nav-icon"></i>
+                  <p>{{i.nombre}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>              
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Panel de Control</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Panel</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+           <!--  <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Online Store Visitors</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">820</span>
+                    <span>Visitors Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                    <span class="text-muted">Since last week</span>
+                  </p>
+                </div>
+                 /.d-flex
+
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                </div>
+              </div>
+            </div> --> 
+            <!-- /.card -->
+            
+             <div class="card collapse show" align="center"   id="logo">
+             <div class="responsive" id="logo">
+              <img src="dist/img/GENESIS2019.png"style="position: center; max-width: 50%;max-height: 50%;">
+            </div>
+            </div>
+            <div class="card collapse show hidden" style="visibility: hidden"   id="table-collapse">
+              <div class="card-header border-0">
+                <h3 class="card-title">Sucursales a la fecha: </h3>
+                <div class="card-tools">
+                <!-- herramientas de header -->
+                  <label>Desde</label>
+                  <input type="date" ng-model="desde" id="1" name="fecha">
+                  <label>Hasta</label>
+                  <input type="date" ng-model="hasta" id="2" name="fecha2">
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover table-stripedtable-valign-middle "> 
+                  <thead class="bg-primary">
+                  <tr>
+                    <th>Sucursal</th>
+                    <th>Empresa</th>
+                    <th>Periodo</th>
+                    <th>Detalles</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="j in sucursales">
+                    <td>
+                      <img src="dist/img/logo.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                      {{j.empresa}}
+                    </td>
+                    <td>{{j.nombre_empresa}}</td>
+                    <td>{{j.anio}}</td>
+                    <td>
+                      <a align="center" href="#" class="text-muted" ng-click="verDetalle(j.empresa,j.nombre_empresa,desde,hasta)">
+                        <i align= "center "class="fas fa-search"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+          <!-- <div class="col-lg-6"> -->
+           <!--  <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Sales</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">$18,230.00</span>
+                    <span>Sales Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                    <span class="text-muted">Since last month</span>
+                  </p>
+                </div> -->
+                <!-- /.d-flex -->
+
+                <!-- <div class="position-relative mb-4">
+                  <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This year
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last year
+                  </span>
+                </div>
+              </div>
+            </div> -->
+            <!-- /.card -->
+
+            <!-- <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Online Store Overview</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-sm btn-tool">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-sm btn-tool">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-success text-xl">
+                    <i class="ion ion-ios-refresh-empty"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-up text-success"></i> 12%
+                    </span>
+                    <span class="text-muted">CONVERSION RATE</span>
+                  </p>
+                </div> -->
+                <!-- /.d-flex -->
+                <!-- <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-warning text-xl">
+                    <i class="ion ion-ios-cart-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                    </span>
+                    <span class="text-muted">SALES RATE</span>
+                  </p>
+                </div> -->
+                <!-- /.d-flex -->
+              <!--   <div class="d-flex justify-content-between align-items-center mb-0">
+                  <p class="text-danger text-xl">
+                    <i class="ion ion-ios-people-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-down text-danger"></i> 1%
+                    </span>
+                    <span class="text-muted">REGISTRATION RATE</span>
+                  </p>
+                </div> -->
+                <!-- /.d-flex -->
+              </div>
+            </div>
+          <!-- </div> -->
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2020 <a href="">Sistemas Genesis</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<div class="modal fade" id="detalleEmpresa" tabindex="-1" role="dialog" aria-labelledby="detalleEmpresaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary ">
+        <h5 class="modal-title" id="detalleEmpresaLabel">Detalle de la Sucursal {{empresa.idEmpresa}} al día {{fecha.fecha}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+          <div class="card-body table-responsive p-0">
+               <!--  <table class="table table-striped table-hover table-valign-middle ">
+                  <thead class="bg-primary">
+                  <tr align="center">
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr class="accordion" ng-click="verGrafico()" ng-repeat="k in detalle">
+                    <td align="center">
+                      {{k.nombre.toUpperCase()}}
+                    </td>
+                    <td align="center">
+                    <div ng-if="k.data[0].tipo==1">  
+                    {{k.data[0].cantidad}}
+                    </div>
+                    <div ng-if="k.data[0].tipo==0">
+                    {{k.sums.cantidad}} 
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="panel">
+                           <canvas id="myChart" width="200" height="200"></canvas>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table> -->
+               <ul style="list-style-type:none; padding: 0;  margin: 0;">
+                <li>
+                  <table class="table table-striped table-hover table-valign-middle ">
+                    <thead>
+                      <tr align="center" >
+                      <th>NOMBRE</th>
+                      <th>ITEMS</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </li>
+                <li ng-repeat="k in detalle">
+                  <table class="table table-striped table-hover table-valign-middle">
+                    <tbody>
+                      <tr data-toggle="collapse" data-target="#{{k.nombre}}" ng-click="verGrafico(k.nombre,$index)">
+                        <td >{{k.nombre.toUpperCase()}}</td>
+                        <td align="right">
+                          <div ng-if="k.data[0].tipo==1">  
+                          {{k.data[0].cantidad}}
+                          </div>
+                          <div ng-if="k.data[0].tipo==0">
+                          $&nbsp;{{k.sums.cantidad}} 
+                          </div>
+                        </td>
+                        </tr>
+                      <tr id="{{k.nombre}}" class="panel-collapse collapse">
+                        <td>
+                          <div>
+                            <canvas id="g{{k.nombre}}" width="200" height="200"></canvas>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </li>
+               </ul>
+                <!-- <div class="panel-group">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
+                      </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                      <ul class="list-group">
+                        <li class="list-group-item"><a data-toggle="collapse" href="#collapsePrueba">One</a></li>
+                         <div id="collapsePrueba" class="panel-collapse collapse">
+                          holas
+                         </div>
+                        <li class="list-group-item">Two</li>
+                        <li class="list-group-item">Three</li>
+                      </ul>
+                      <div class="panel-footer">Footer</div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="grafico" tabindex="-1" role="dialog" aria-labelledby="graficoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary ">
+        <h5 class="modal-title" id="graficoLabel">Graphico de la sucursal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <canvas id="myChart" width="200" height="200"></canvas>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE -->
+<script src="dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- <script src="dist/js/demo.js"></script> -->
+<!-- <script src="dist/js/pages/dashboard3.js"></script> -->
+<script src="dist/js/angular/angular.min.js"></script>
+ <script src="dist/js/angular/toastr.min.js"></script>
+<script src="dist/js/angular/app.js"></script>
+</body>
+</html>

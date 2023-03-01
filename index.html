@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Panel Empresas</title>
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/loading.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed" ng-app="app" ng-controller="main">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="" class="nav-link">Dashboard</a>
+      </li>
+      <!-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li> -->
+    </ul>
+
+   
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="https:/sistemasgenesis.com.ec" class="brand-link">
+      <img src="dist/img/logo.png" alt="Sistemas Genesis" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Sistemas Genesis</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Empresas
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" ng-repeat="i in datum">
+                <a href="" ng-click="libs.getdata(i)" data-toggle="collapse-show" data-target="#contenido-collapse" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{i.nombre}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="card collapse show" align="center"   id="logo1">
+        <div class="responsive" id="logo">
+          <img src="dist/img/GENESIS2019.png"style="position: center; max-width: 50%;max-height: 50%;">
+        </div>
+      </div>
+    </section>
+    <div class="col-12 col-sm-12" style="visibility: hidden" id="contenido-collapse">
+      <div class="card card-primary card-tabs">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="custom-tabs-two-tab" role="tablist">
+            <li class="pt-2 px-3"><h3 class="card-title active">{{empresapa}}</h3></li>
+            <li class="nav-item" ng-repeat="i in sucursales">
+              <a class="nav-link" id="custom-tabs-two-home-tab" data-toggle="pill" ng-click="setSucursal(i)" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">{{i.codigo}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="custom-tabs-two-tabContent">
+            <div class="tab-pane fade" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+              <section>
+                <div class="col-xs-12">
+                  <div class="card card-primary">
+                    <div class="card-header" data-toggle="collapse" href="#form" aria-expanded="true" aria-controls="form1">
+                      <span class="fa fa-filter">
+                      </span> Filtros
+                    </div>
+                    <form class="card-body collapse in" id="form">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <label>Desde</label>
+                          <input type="date" class="form-control input-sm" ng-model="filter.desde">
+                        </div>
+                        <div class="col-sm-3">
+                          <label>Hasta</label>
+                          <input type="date" class="form-control input-sm" ng-model="filter.hasta" >
+                        </div>
+                        <div class="col-sm-3">
+                          <label>Procesar</label>
+                          <div><button ng-click="verDetalle()" class="btn btn-primary" form="form"><i class="fa fa-bolt"></i></button></div>
+                        </div> 
+                        <div class="col-sm-3">
+                          <label>Obtener Numeros</label>
+                          <div><button ng-click="getNumbers()" class="btn btn-primary" form="form"><i class="fa fa-phone"></i></button></div>
+                        </div> 
+                      </div>                                         
+                    </form>
+                  </div>
+                </div>
+                <div class="card card-secondary" ng-show="libs.flag==true">
+                  <div class="card-header">
+                    <span class="fa fa-info-circle" style="padding-top: 0.5em">
+                    </span> Informacion
+                  </div>
+                  <!-- Small boxes (Stat box) -->
+                  <div class="card-body">
+                    <div class="col-sm-12 form-inline">
+                      <div class="col-6">
+                        <label>
+                          Empresa: {{empresa.empresa}}
+                        </label>
+                      </div>
+                      <div class="col-6">
+                        <label>
+                          Direccion: {{empresa.direccion}}
+                        </label>
+                      </div>
+                      <div class="col-6">
+                        <label>
+                          RUC: {{empresa.ruc}}
+                        </label>
+                      </div>
+                      <div class="col-6">
+                        <label>
+                          Periodo: {{empresa.periodo}}
+                        </label>
+                      </div>
+                      <br><br>
+                      <div class="col-12 form-group">
+                        <div class="col-8">
+                          <label>Estado de Deuda</label>
+                          <select class="form-control" style="width: 100%;" ng-model="estado_deuda" ng-options="i.value for i in opciones track by i.id"></select>
+                        </div>
+                        <div class="col-sm-4">
+                          <br>
+                          <div><button ng-click="saveDeuda()" class="btn btn-primary" form="form">Actualizar</button></div>
+                        </div> 
+                      </div>
+                      <br><br>
+                      <div class="col-12 form-group">
+                        <div class="col-8">
+                          <label>Valor Deuda</label>
+                          <input type="number"  onClick="this.select();" class="form-control" style="width: 100%;" ng-model="valor_deuda" >
+                        </div>
+                        <div class="col-sm-4">
+                          <br>
+                          <div><input type="checkbox" ng-model="aplica_todas" ng-true_value="1" ng-false-value="0" name=""> Actualiza todas</div>
+                        </div>
+                      </div>
+                      <div class="col-12 form-group">
+                        <div class="col-8">
+                          <label>Mensaje Notificacion</label>
+                          <input type="text"  onClick="this.select();" class="form-control" style="width: 100%;" ng-model="notificacion_deuda" >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                 
+                <div class="card card-secondary" ng-show="libs.flag==true">
+                  <div class="card-header">
+                    <span class="fa fa-chart-bar" style="padding-top: 0.5em">
+                    </span> Estadisticas
+                  </div>
+                  <!-- Small boxes (Stat box) -->
+                  <div class="card-body">
+                    <div class="row">
+                      
+                      <div class="col-lg-4 col-12">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                          <div class="inner">
+                            <h3>#{{detalle.ventas}}&nbsp;&nbsp;&nbsp;&nbsp;${{detalle.total_ventas | number:2}}</h3>
+
+                            <p>Cantidad y Total en ventas</p>
+                          </div>
+                          <div class="icon">
+                            <i class="ion ion-cash"></i>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-4 col-12">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                          <div class="inner">
+                            <h3>#{{detalle.compras}}&nbsp;&nbsp;&nbsp;&nbsp;${{detalle.total_compras | number:2}}</h3>
+
+                            <p>Cantidad y Total en compras</p>
+                          </div>
+                          <div class="icon">
+                            <i class="ion ion-archive"></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-12">
+                        <!-- small box -->
+                        <div class="small-box" style="background: salmon">
+                          <div class="inner">
+                            <h3>${{detalle.ingreso_diario | number:2}}</h3>
+
+                            <p>Ingresos (Ingresos Diarios)</p>
+                          </div>
+                          <div class="icon">
+                            <i class="ion ion-social-usd"></i>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-6 col-12">
+                        <!-- small box -->
+                        <div class="small-box" style="background: lightskyblue;">
+                          <div class="inner">
+                            <h3>${{detalle.retenciones | number:2}}</h3>
+
+                            <p>Total de Retenciones</p>
+                          </div>
+                          <div class="icon">
+                            <i class="ion ion-cash"></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-12">
+                        <!-- small box -->
+                        <div class="small-box" style="background: yellow;">
+                          <div class="inner">
+                            <h3>{{detalle.electronicos.conteo}}</h3>
+
+                            <p>Doc. Electronicos {{detalle.electronicos.fechalast}}</p>
+                          </div>
+                          <div class="icon">
+                            <i class="ion ion-archive"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-show="libs.flag==true">
+                  <div class="card card-secondary" ng-show="libs.flag==true">
+                    <div class="card-header">
+                      <span class="fa fa-chart-pie" style="padding-top: 0.5em">
+                      </span> Graficos
+                      <div class="card-tools">
+                        <ul class="nav nav-pills car-pills">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#ventas-chart" data-toggle="tab">Compras y Ventas</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#comprobantes-chart" data-toggle="tab">Comprobantes</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#varios-chart" data-toggle="tab">Varios</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content p-0">
+                      <!-- Morris chart - Sales -->
+                      <div class="chart tab-pane active" id="ventas-chart" style="position: relative;">
+                        <div class="row">
+                          <div id="div-chart" class="col-sm-7">
+                            <canvas id="ventas"></canvas>
+                          </div>
+                          <div class="col-sm-5" style="max-height: 400px; overflow-y: scroll;">
+                            <table class="table table-sm table-hover table-responsive-xs">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Fecha</th>
+                                  <th scope="col" style="text-align: right; background: green">Ventas</th>
+                                  <th scope="col" style="text-align: right;background: red">Compras</th>
+                                  <th scope="col" style="text-align: right;background: salmon">Ingresos</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr ng-repeat="i in tabla">
+                                  <th scope="row">{{i.fecha}}</th>
+                                  <th scope="row" style="text-align: right;">{{i.ventas | number:2}}</th>
+                                  <th scope="row" style="text-align: right;">{{i.compras |number:2}}</th>
+                                  <th scope="row" style="text-align: right;">{{i.ingresos |number:2}}</th>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>                          
+                      </div>
+                      <div class="chart tab-pane" id="comprobantes-chart" style="position: relative;">
+                        <div class="row">
+                          <div id="div-chart-doc" class="col-sm-8">
+                            <canvas id="comprobantes"></canvas>
+                          </div>
+                          <div class="col-sm-4" style="max-height: 400px; overflow-y: scroll;">
+                            <table class="table table-sm table-hover table-responsive-xs">
+                              <thead>
+                                <tr>
+                                  <th scope="col"></th>
+                                  <th scope="col" >Tipo</th>
+                                  <th scope="col" style="text-align: right;">Cantidad</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <th scope="row">Comprobantes Egreso {{detalle.co_ingreso.lastfecha}}</th>
+                                  <th scope="row"style="text-align: right;background: green">{{detalle.co_ingreso.conteo}}</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <th scope="row">Comprobantes Ingreso {{detalle.co_egreso.lastfecha}}</th>
+                                  <th scope="row" style="text-align: right;background: red">{{detalle.co_egreso.conteo}}</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <th scope="row">Comprobantes (diarios) {{detalle.comp_diarios.lastfecha}}</th>
+                                  <th scope="row"style="text-align: right; background: salmon">{{detalle.comp_diarios.conteo}}</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <th scope="row">Notas de Credito {{detalle.notas_credito.lastfecha}}</th>
+                                  <th scope="row"style="text-align: right;background: purple">{{detalle.notas_credito.conteo}}</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <th scope="row">Notas de Debito {{detalle.notas_debito.lastfecha}}</th>
+                                  <th scope="row"style="text-align: right;background: orange">{{detalle.notas_debito.conteo}}</th>
+                                </tr>                                
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>                      
+                      </div> 
+                      <div class="chart tab-pane" id="varios-chart" style="position: relative;">
+                        <div class="row">
+                          <div id="div-chart-var" class="col-sm-8">
+                            <canvas id="varios"></canvas>
+                          </div>
+                          <div class="col-sm-4" style="max-height: 400px; overflow-y: scroll;">
+                            <table class="table table-sm table-hover table-responsive-xs">
+                              <thead>
+                                <tr>
+                                  <th scope="col"></th>
+                                  <th scope="col">Tipo</th>
+                                  <th scope="col" style="text-align: right;">Cantidad</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <th scope="row">items</th>
+                                  <th scope="row"style="text-align: right;">{{detalle.items}}</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <th scope="row">Clientes</th>
+                                  <th scope="row" style="text-align: right;">{{detalle.cliente}}</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <th scope="row">Proveedores</th>
+                                  <th scope="row"style="text-align: right;">{{detalle.proveedores}}</th>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>                      
+                      </div> 
+                    </div>
+                  </div>
+                </div>                                          
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2021-2022 <a href="http://adminlte.io">SistemasGenesis.com.ec</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.2.5
+    </div>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+ <loading/>
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- <script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script> -->
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<!-- <script src="plugins/sparklines/sparkline.js"></script> -->
+<!-- JQVMap -->
+<!-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script> -->
+<!-- <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+ --><!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script src="dist/js/angular/angular.min.js"></script>
+<script src="dist/js/angular/toastr.min.js"></script>
+<script src="dist/js/angular/app.js"></script>
+
+</body>
+</html>
