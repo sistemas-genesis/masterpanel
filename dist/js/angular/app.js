@@ -29,6 +29,28 @@ app.controller('main', ['$scope', '$http', async ($scope, $http) => {
       }
     ]
 
+    $scope.filtrocp =[
+      {
+        id:0,
+        value:'Cliente'
+      },
+      {
+        id:1,
+        value:'Proveedor'
+      },
+      {
+        id:2,
+        value:'Cliente/Proveedor'
+      }
+    ]; // Valor por defecto
+
+    $scope.selectedOption = $scope.filtrocp[0];
+
+    $scope.$watch('selectedOption', function(newValue, oldValue) {
+      console.log('La opción seleccionada es:', newValue);
+    });
+
+    
     $scope.setSucursal = (i)=>{
       $scope.libs.flag=false;
       $scope.empresa=i;
@@ -89,19 +111,27 @@ app.controller('main', ['$scope', '$http', async ($scope, $http) => {
 
           var retContent = [];
           var retString = '';
-          clientes.forEach(function (elem, idx){
-            var elemText = [];
-            // console.log(Object.values(elem))
-            retContent.push(`${Object.values(elem).join(',')}`);
-          });
-          proveedores.forEach(function (elem1, idx){
-            var elemText1 = [];
-            retContent.push(`${Object.values(elem1).join(',')}`);
-          });
+          var opcion = $scope.selectedOption;
+
+          if(opcion.id==0 || opcion.id==2){
+            clientes.forEach(function (elem, idx){
+              var elemText = [];
+              // console.log(Object.values(elem))
+              retContent.push(`${Object.values(elem).join(',')}`);
+            });
+          }
+
+          if(opcion.id==1 || opcion.id==2){
+            proveedores.forEach(function (elem1, idx){
+              var elemText1 = [];
+              retContent.push(`${Object.values(elem1).join(',')}`);
+            });
+          } 
+
           retString = retContent.join('\r\n');
           var file = new Blob([retString], {type: 'text/plain'});
           var pom = document.createElement('a');
-          filename='Clientes_Proveedores.csv'
+          filename=opcion.value+'.csv'
           pom.setAttribute('href', window.URL.createObjectURL(file));
           pom.setAttribute('download', filename);
 

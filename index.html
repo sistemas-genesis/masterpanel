@@ -134,11 +134,16 @@
                           <label>Hasta</label>
                           <input type="date" class="form-control input-sm" ng-model="filter.hasta" >
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                           <label>Procesar</label>
                           <div><button ng-click="verDetalle()" class="btn btn-primary" form="form"><i class="fa fa-bolt"></i></button></div>
                         </div> 
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">                          
+                          <label>Filtro Por</label>
+                          <select ng-model="selectedOption" ng-options="option.value for option in filtrocp track by option.id">
+                          </select>                          
+                        </div> 
+                        <div class="col-sm-2">
                           <label>Obtener Numeros</label>
                           <div><button ng-click="getNumbers()" class="btn btn-primary" form="form"><i class="fa fa-phone"></i></button></div>
                         </div> 
