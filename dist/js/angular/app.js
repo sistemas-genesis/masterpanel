@@ -346,7 +346,7 @@ app.controller('main', ['$scope', '$http', async ($scope, $http) => {
                 toastr.warning(res.msg, '', 'warning');
               else {
                 $scope.sucursales = res.datos;
-                              }
+                }
             })
             .error(() => {
               toastr.error('No se pudo establecer la comunicación con el servidor, intente nuevamente');

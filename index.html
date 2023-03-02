@@ -110,7 +110,7 @@
           <ul class="nav nav-tabs card-header-tabs" id="custom-tabs-two-tab" role="tablist">
             <li class="pt-2 px-3"><h3 class="card-title active">{{empresapa}}</h3></li>
             <li class="nav-item" ng-repeat="i in sucursales">
-              <a class="nav-link" id="custom-tabs-two-home-tab" data-toggle="pill" ng-click="setSucursal(i)" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">{{i.codigo}}</a>
+              <a class="nav-link" id="custom-tabs-two-home-tab" data-toggle="pill" ng-click="setSucursal(i)" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">{{i.codigo+"-"+i.periodo}}</a>
             </li>
           </ul>
         </div>
@@ -126,11 +126,11 @@
                     </div>
                     <form class="card-body collapse in" id="form">
                       <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                           <label>Desde</label>
                           <input type="date" class="form-control input-sm" ng-model="filter.desde">
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                           <label>Hasta</label>
                           <input type="date" class="form-control input-sm" ng-model="filter.hasta" >
                         </div>
@@ -138,9 +138,9 @@
                           <label>Procesar</label>
                           <div><button ng-click="verDetalle()" class="btn btn-primary" form="form"><i class="fa fa-bolt"></i></button></div>
                         </div> 
-                        <div class="col-sm-2">                          
-                          <label>Filtro Por</label>
-                          <select ng-model="selectedOption" ng-options="option.value for option in filtrocp track by option.id">
+                        <div class="col-sm-3">                          
+                          <label>CVS de</label>
+                          <select class="form-select" aria-label=".form-select-lg" ng-model="selectedOption" ng-options="option.value for option in filtrocp track by option.id">
                           </select>                          
                         </div> 
                         <div class="col-sm-2">
